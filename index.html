@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo localStorage - Contador</title>
+</head>
+<body>
+  <h1>Contador con localStorage</h1>
+
+  <p>Valor actual: <span id="contador">0</span></p>
+  <button onclick="incrementar()">Incrementar</button>
+
+  <script>
+    // Al cargar la página, inicializamos el contador si no existe
+    if (localStorage.getItem("Contador") === null) {
+      localStorage.setItem("Contador", 0);
+    }
+
+    // Mostramos el valor actual
+    document.getElementById("contador").innerText = localStorage.getItem("Contador");
+
+    // Función para incrementar
+    function incrementar() {
+      let valor = parseInt(localStorage.getItem("Contador"));
+      valor++;
+      localStorage.setItem("Contador", valor);
+      document.getElementById("contador").innerText = valor;
+    }
+  </script>
+</body>
+</html>

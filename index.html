@@ -2,29 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ejemplo localStorage - Contador</title>
+  <title>Contador Offline</title>
 </head>
 <body>
-  <h1>Contador con localStorage</h1>
+  <h1>Contador con localStorage (Offline Ready)</h1>
 
   <p>Valor actual: <span id="contador">0</span></p>
   <button onclick="incrementar()">Incrementar</button>
+  <button onclick="reiniciar()">Reiniciar</button>
 
+  <script src="script.js"></script>
   <script>
-    // Al cargar la página, inicializamos el contador si no existe
-    if (localStorage.getItem("Contador") === null) {
-      localStorage.setItem("Contador", 0);
-    }
-
-    // Mostramos el valor actual
-    document.getElementById("contador").innerText = localStorage.getItem("Contador");
-
-    // Función para incrementar
-    function incrementar() {
-      let valor = parseInt(localStorage.getItem("Contador"));
-      valor++;
-      localStorage.setItem("Contador", valor);
-      document.getElementById("contador").innerText = valor;
+    // Registrar el Service Worker
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("✅ Service Worker registrado"))
+        .catch(err => console.error("❌ Error al registrar SW", err));
     }
   </script>
 </body>

@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Contador Offline</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Color de la barra del navegador (Android/Chrome) -->
+  <meta name="theme-color" content="#0b65c2" />
+  <!-- Enlace al manifest -->
+  <link rel="manifest" href="/manifest.webmanifest" />
 </head>
 <body>
   <h1>Contador con localStorage (Offline Ready)</h1>
@@ -15,7 +20,7 @@
   <script>
     // Registrar el Service Worker
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js")
+      navigator.serviceWorker.register("/service-worker.js")
         .then(() => console.log("✅ Service Worker registrado"))
         .catch(err => console.error("❌ Error al registrar SW", err));
     }

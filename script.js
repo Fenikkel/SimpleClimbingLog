@@ -1,20 +1,20 @@
-// Al cargar la página, inicializamos el contador si no existe
+// Inicializa si no existe
 if (localStorage.getItem("Contador") === null) {
   localStorage.setItem("Contador", 0);
 }
 
-// Mostrar el valor actual
+// Muestra
 document.getElementById("contador").innerText = localStorage.getItem("Contador");
 
-// Función para incrementar
+// Incrementa
 function incrementar() {
-  let valor = parseInt(localStorage.getItem("Contador"));
+  let valor = parseInt(localStorage.getItem("Contador"), 10);
   valor++;
   localStorage.setItem("Contador", valor);
   document.getElementById("contador").innerText = valor;
 }
 
-// Función para reiniciar
+// Reinicia
 function reiniciar() {
   localStorage.setItem("Contador", 0);
   document.getElementById("contador").innerText = 0;

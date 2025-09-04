@@ -1,14 +1,14 @@
-const CACHE_NAME = "contador-cache-v2";
+const CACHE_NAME = "climbinglog-cache-v1";
 const URLS_A_CACHEAR = [
-  "/",
-  "/index.html",
-  "/script.js",
-  "/manifest.webmanifest",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png"
+  "./",                 // importante para abrir offline en la raíz del subpath
+  "./index.html",
+  "./script.js",
+  "./manifest.webmanifest",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png"
 ];
 
-// Instalar: precache de archivos clave
+// Instalar: precache
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(URLS_A_CACHEAR))
@@ -16,7 +16,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
 });
 
-// Activar: limpiar cachés antiguos
+// Activar: limpiar versiones antiguas
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -26,22 +26,19 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Estrategia: Cache First con fallback a red
+// Fetch: Cache First con fallback a red y cache dinámico
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cacheRes) => {
-      return (
-        cacheRes ||
-        fetch(event.request).then((netRes) => {
-          // (Opcional) Cache dinámico: guarda lo que no estaba precacheado
+      if (cacheRes) return cacheRes;
+      return fetch(event.request)
+        .then((netRes) => {
+          // (Opcional) guarda en caché lo que venga de red
           const clone = netRes.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          caches.open(CACHE_NAME).then((c) => c.put(event.request, clone));
           return netRes;
-        }).catch(() => {
-          // (Opcional) Devolver una página offline personalizada si quieres
-          return caches.match("/index.html");
         })
-      );
+        .catch(() => caches.match("./index.html"));
     })
   );
 });

@@ -1,8 +1,9 @@
-const CACHE_NAME = "climbinglog-cache-v2";
+const CACHE_NAME = "climbinglog-cache-v3";
+
 const URLS_A_CACHEAR = [
   "./",                 // importante para abrir offline en la raíz del subpath
   "./index.html",
-  "./script.js",
+  "./js/script.js",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png"

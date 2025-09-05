@@ -1,12 +1,12 @@
 {
-  "name": "ClimbingLog",
-  "short_name": "ClimbLog",
+  "name": "Climbing Log",
+  "short_name": "Climb Log",
   "description": "Registro de escaladas, offline y rápido",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0b65c2",
+  "background_color": "#00ff00",
+  "theme_color": "#ff0000",
   "icons": [
     {
       "src": "./icons/icon-192.png",

@@ -10,20 +10,13 @@
   <link rel="manifest" href="./manifest.webmanifest" />
 </head>
 <body>
-  <h1>v2</h1>
+  <h1>v3</h1>
 
   <p>Contador: <span id="contador">0</span></p>
   <button onclick="incrementar()">Incrementar</button>
   <button onclick="reiniciar()">Reiniciar</button>
 
   <script src="./js/script.js"></script>
-  <script>
-    // Registrar el Service Worker con ruta relativa
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("./service-worker.js")
-        .then(() => console.log("✅ Service Worker registrado"))
-        .catch(err => console.error("❌ Error al registrar SW", err));
-    }
-  </script>
+  <script src="./service-worker/service-worker-register.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const CACHE_NAME = "climbinglog-cache-v3";
+const CACHE_NAME = "climbinglog-cache-v4"; // Cambiar nombre si queremos que se refresque la cache
 
 const URLS_A_CACHEAR = [
   "./",                 // importante para abrir offline en la raíz del subpath
